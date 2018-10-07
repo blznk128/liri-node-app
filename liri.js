@@ -19,16 +19,7 @@ for (i = 3; i < input.length; i++) {
  	 }
 	var queryUrl = "http://www.omdbapi.com/?t=" + name + "&y=&plot=short&apikey=trilogy";
 	request.get(queryUrl, function(error, response, body) {
-	  	if (!error && response.statusCode === 200) {
-	  		for (i = 0; i < JSON.parse(body).Ratings.length; i++) {
-	  			if (JSON.parse(body).Ratings[i].Source === "Rotten Tomatoes") {
-	  				tomatoesRating = JSON.parse(body).Ratings[i].Value;
-	  			}
-	  			if (JSON.parse(body).Ratings[i].Source === "Internet Movie Database") {
-	  				internetRating = JSON.parse(body).Ratings[i].Value;
-	  			}
-	  		}
-              var myMovie =
+	  	if (!error && response.statusCode === 200) {		
                 console.log(queryUrl);
                 console.log("Title: " + JSON.parse(body).Title);
                 console.log("Release Year: " + JSON.parse(body).Year);
@@ -37,7 +28,7 @@ for (i = 3; i < input.length; i++) {
                 console.log("Language: " + JSON.parse(body).Language);
                 console.log("Plot: " + JSON.parse(body).Plot);
                 console.log("Actors: " + JSON.parse(body).Actors);
-    		    console.log(myMovie);
+                console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[2].Value)
   		}
 	});
 }
@@ -58,7 +49,7 @@ if (command === "concert-this") {
 }
     if (command === "spotify-this-song") {
         if (name === "") {
-              name = "The Sign"
+              name = "The Sign ace"
           }
         spotify.search({ type: 'track', query: name, limit: 6 }, function(err, data) {
          if (err) {
